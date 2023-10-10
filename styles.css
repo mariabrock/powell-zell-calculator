@@ -94,17 +94,17 @@ body {
 }
 .equal {
   grid-area: equal;
-  background-color: var(--oxford-blue);
+  background-color: var(--rich-black);
   color: var(--platinum);
 }
 
-.operator {
+[data-type="operator"] {
   background-color: var(--silver-lake-blue);
   color: var(--platinum);
 }
-.operator:hover,
-.operator:focus {
-  background-color: var(--rich-black);
+[data-type="operator"]:hover,
+[data-type="operator"]:focus {
+  background-color: var(--yinmn-blue);
   color: var(--platinum);
 }
 
@@ -113,8 +113,8 @@ body {
   color: var(--rich-black);
 }
 
-.number:focus {
-  background-color: var(--yinmn-blue);
+[data-type="number"]:focus {
+  background-color: var(--silver-lake-blue);
   color: var(--platinum);
 }
 
