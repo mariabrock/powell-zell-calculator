@@ -98,24 +98,22 @@ body {
   color: var(--platinum);
 }
 
-[data-type="operator"] {
-  background-color: var(--silver-lake-blue);
-  color: var(--platinum);
-}
-[data-type="operator"]:hover,
-[data-type="operator"]:focus {
-  background-color: var(--yinmn-blue);
-  color: var(--platinum);
-}
-
 .equal:active {
   background-color: var(--platinum);
   color: var(--rich-black);
 }
 
-[data-type="number"]:focus {
+[data-type="operator"] {
   background-color: var(--silver-lake-blue);
   color: var(--platinum);
 }
 
+[data-type="operator"]:active,
+[data-type="number"]:active {
+  background-color: var(--yinmn-blue);
+  color: var(--platinum);
+}
 
+[data-state="selected"] {
+  background-color: var(--yinmn-blue);
+}

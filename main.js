@@ -12,24 +12,44 @@ keys.addEventListener('click', event => {
 	//type is now destructured
 	const { previousKeyType } = calculator.dataset
 
-	// is this a number key?
 	if(type === 'number') {
-		if(displayValue === '0') {
-			display.textContent = keyValue
-		} else if (previousKeyType === 'operator') {
+		if(displayValue === '0'|| previousKeyType === 'operator') {
 			display.textContent = keyValue
 		} else {
 			display.textContent = displayValue + keyValue
 		}
-
-		// to reset the value
-		calculator.dataset.previousKeyType = 'number'
 	}
 
-	// is this an operator key?
 	if(type === 'operator') {
-		console.log(key)
+		const operatorKeys = keys.querySelectorAll('[data-type="operator"]')
+		operatorKeys.forEach(el => {el.dataset.state = ''})
+			// could also use:
+		// const currentActiveOperator = calculator.querySelector('[data-state="selected"]')
+		// if (currentActiveOperator) {
+		// 	currentActiveOperator.dataset.state =''
+		// }
+		key.dataset.state = 'selected'
 
-		calculator.dataset.previousKeyType = 'operator'
+		calculator.dataset.firstnumber = displayValue
+		calculator.dataset.operator = key.dataset.key
 	}
+
+	if(type === 'equal') {
+		// perform calculation
+		const firstNumber = calculator.dataset.firstnumber
+		const operator = calculator.dataset.operator
+		const secondNumber = displayValue
+		display.textContent = calculate(firstNumber, operator, secondNumber)
+	}
+	// to reset the value
+	calculator.dataset.previousKeyType = type
 })
+
+function calculate (firstNumber, operator, secondNumber) {
+	firstNumber = parseInt(firstNumber)
+	secondNumber = parseInt(secondNumber)
+	if(operator === 'plus') return firstNumber + secondNumber
+	if(operator === 'minus') return  firstNumber - secondNumber
+	if(operator === 'times') return firstNumber * secondNumber
+	if(operator === 'divide') return firstNumber / secondNumber
+}
