@@ -108,8 +108,7 @@ body {
   color: var(--platinum);
 }
 
-.equal:hover,
-.equal:focus {
+.equal:active {
   background-color: var(--platinum);
   color: var(--rich-black);
 }
