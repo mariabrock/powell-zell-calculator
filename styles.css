@@ -94,16 +94,6 @@ body {
 }
 .equal {
   grid-area: equal;
-  background-color: var(--oxford-blue);
-  color: var(--platinum);
-}
-
-.operator {
-  background-color: var(--silver-lake-blue);
-  color: var(--platinum);
-}
-.operator:hover,
-.operator:focus {
   background-color: var(--rich-black);
   color: var(--platinum);
 }
@@ -113,9 +103,17 @@ body {
   color: var(--rich-black);
 }
 
-.number:focus {
+[data-type="operator"] {
+  background-color: var(--silver-lake-blue);
+  color: var(--platinum);
+}
+
+[data-type="operator"]:active,
+[data-type="number"]:active {
   background-color: var(--yinmn-blue);
   color: var(--platinum);
 }
 
-
+[data-state="selected"] {
+  background-color: var(--yinmn-blue);
+}
