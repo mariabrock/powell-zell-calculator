@@ -30,7 +30,7 @@ keys.addEventListener('click', event => {
 		// }
 		key.dataset.state = 'selected'
 
-		calculator.dataset.firstnumber = displayValue
+		calculator.dataset.firstNumber = displayValue
 		calculator.dataset.operator = key.dataset.key
 	}
 
@@ -41,6 +41,13 @@ keys.addEventListener('click', event => {
 		const secondNumber = displayValue
 		display.textContent = calculate(firstNumber, operator, secondNumber)
 	}
+
+	if(type === 'clear') {
+		display.textContent = '0'
+		delete calculator.dataset.firstNumber
+		delete calculator.dataset.secondNumber
+	}
+
 	// to reset the value
 	calculator.dataset.previousKeyType = type
 })
@@ -53,3 +60,27 @@ function calculate (firstNumber, operator, secondNumber) {
 	if(operator === 'times') return firstNumber * secondNumber
 	if(operator === 'divide') return firstNumber / secondNumber
 }
+
+function clearCalculator() {
+	// press the clear key
+	const clearKey = document.querySelector('[data-type="clear"]')
+	clearKey.click()
+}
+
+function testClearKey() {
+	clearCalculator()
+}
+
+// ===========
+// TESTING
+// ===========
+
+// console.assert(assertion, msg)
+
+const one = document.querySelector('.one')
+one.click()
+console.assert(display.textContent === '1', 'Clicked One')
+clearCalculator()
+// one. addEventListener('click', event => {
+// 	console.log('hello')
+// })
