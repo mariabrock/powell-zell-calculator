@@ -69,6 +69,10 @@ function clearCalculator() {
 
 function testClearKey() {
 	clearCalculator()
+	console.assert(display.textContent === '0', 'Clear key. Display should be 0.')
+	console.assert(!calculator.dataset.firstNumber, 'Clear key. No first number remains.')
+	console.assert(!calculator.dataset.secondNumber, 'Clear key. No operator remains.')
+
 }
 
 // ===========
@@ -77,10 +81,44 @@ function testClearKey() {
 
 // console.assert(assertion, msg)
 
-const one = document.querySelector('.one')
-one.click()
-console.assert(display.textContent === '1', 'Clicked One')
-clearCalculator()
-// one. addEventListener('click', event => {
-// 	console.log('hello')
-// })
+const one = document.querySelector('[data-key="1"]')
+const five = document.querySelector('[data-key="5"]')
+const nine = document.querySelector('[data-key="9"]')
+
+ function testKeySequence (test) {
+	// press many keys
+	test.keys.forEach(key => {
+		// press one key
+		document.querySelector(`[data-key="${key}"]`).click()
+	})
+
+	 //assertion
+	 // 1. value to assert
+	 // 2. test message
+	 console.assert(display.textContent === test.value, test.message)
+
+	 //clear
+	 clearCalculator()
+	 testClearKey()
+
+ }
+
+ const tests = [
+	 {
+		 keys: ['1'],
+		 value: '1',
+		 message: 'Click 1'
+	 },
+	 {
+		 keys: ['1', '5'],
+		 value: '15',
+		 message: 'Click 15'
+	 },
+	 {
+		 keys: ['1', '5', '9'],
+		 value: '159',
+		 message: 'Click 159'
+	 }
+ ]
+
+ tests.forEach(testKeySequence)
